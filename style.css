@@ -1,0 +1,159 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+  color: #5e503f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window {
+  width: 300px;
+  height: 305px;
+  border: 3px solid #5e503f;
+  border-radius: 0 0 16px 16px;
+  background-color: #fffef8;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 #5e503f;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background: #f2c94c;
+  padding: 8px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #5e503f;
+  text-align: center;
+  border-bottom: 2px solid #d8b44c;
+  text-shadow: none;
+  -webkit-app-region: drag;
+  position: relative;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.window-controls {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  display: flex;
+  gap: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.window-controls button {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #5e503f;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.window-controls button:hover {
+  background-color: #f2c94c;
+}
+
+.content {
+  padding: 10px;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.message {
+  font-size: 12px;
+  margin-bottom: 10px;
+  color: #5e503f;
+}
+
+.gif-container {
+  position: relative;
+  width: 100%;
+}
+
+.gif-container img {
+  width: 100%;
+  border-radius: 8px;
+  image-rendering: pixelated;
+  display: block;
+}
+
+.buttons-over-gif {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 4px 8px;
+  border-radius: 6px;
+  -webkit-app-region: no-drag;
+}
+
+.buttons-over-gif button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.buttons-over-gif img {
+  width: 26px;
+  height: 26px;
+  filter: none;
+  transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+.buttons-over-gif img:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 6px #0ff);
+}
+
+.timer {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 12px;
+  color: #5e503f;
+}
+
+.mode-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 6px 14px;
+  background-color: #f2c94c;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #5e503f;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.mode-btn .icon {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+.mode-btn:hover {
+  background-color: #ffeaa7;
+}
