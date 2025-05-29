@@ -1,14 +1,14 @@
-let timer;
-let seconds = 0;
+let interval;
+let startTime;
+let accumulatedTime = 0;
 let running = false;
 
 const timerDisplay = document.querySelector(".timer");
 
-function updateDisplay() {
-  const hrs = Math.floor(seconds / 3600);
-  const min = Math.floor((seconds % 3600) / 60);
-  const sec = seconds % 60;
-
+function updateDisplay(elapsed) {
+  const hrs = Math.floor(elapsed / 3600);
+  const min = Math.floor((elapsed % 3600) / 60);
+  const sec = elapsed % 60;
   const formatted = [hrs, min, sec].map(n => String(n).padStart(2, '0')).join(':');
   timerDisplay.textContent = formatted;
 }
@@ -16,26 +16,61 @@ function updateDisplay() {
 export function startTimer() {
   if (!running) {
     running = true;
-    timer = setInterval(() => {
-      seconds++;
-      updateDisplay();
+    startTime = Date.now() - accumulatedTime * 1000;
+    let notified = false;
+
+    interval = setInterval(() => {
+      const now = Date.now();
+      const elapsed = Math.floor((now - startTime) / 1000);
+      accumulatedTime = elapsed;
+      updateDisplay(elapsed);
+
+      if (elapsed >= 1500 && !notified) {
+        notified = true;
+
+        if (Notification.permission === "granted") {
+          new Notification("Focus Timer", {
+            body: "25 minutos! Hora de fazer uma pausa 🧘",
+          });
+        } else if (Notification.permission !== "denied") {
+          Notification.requestPermission().then(permission => {
+            if (permission === "granted") {
+              new Notification("Focus Timer", {
+                body: "25 minutos! Hora de fazer uma pausa 🧘",
+              });
+            }
+          });
+        }
+      }
     }, 1000);
   }
 }
 
 export function pauseTimer() {
-  running = false;
-  clearInterval(timer);
+  if (running) {
+    running = false;
+    clearInterval(interval);
+  }
 }
 
 export function resetTimer() {
-  seconds = 0;
-  updateDisplay();
+  clearInterval(interval);
+  startTime = Date.now();
+  accumulatedTime = 0;
+  running = true;
+
+  updateDisplay(0);
+
+  interval = setInterval(() => {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    accumulatedTime = elapsed;
+    updateDisplay(elapsed);
+  }, 1000);
 }
 
 export function stopTimer() {
+  clearInterval(interval);
   running = false;
-  clearInterval(timer);
-  seconds = 0;
-  updateDisplay();
+  accumulatedTime = 0;
+  updateDisplay(0);
 }

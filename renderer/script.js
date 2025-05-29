@@ -1,8 +1,8 @@
-import { setChillMode } from './modes/chillMode.js';
-import { setFocusMode } from './modes/focusMode.js';
-import { startTimer, pauseTimer, resetTimer, stopTimer } from './timer/timerControl.js';
-import { bindButtons } from './buttons/setupButtons.js';
-import { bindWindowControls } from './window/windowControls.js';
+import { setChillMode } from '../modes/chillMode.js';
+import { setFocusMode } from '../modes/focusMode.js';
+import { startTimer, pauseTimer, resetTimer, stopTimer } from '../timer/timerControl.js';
+import { bindButtons } from '../buttons/setupButtons.js';
+import { bindWindowControls } from '../window/windowControls.js';
 
 let isChillMode = false;
 
