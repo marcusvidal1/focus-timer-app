@@ -1,4 +1,8 @@
+# Ignora dependências
 node_modules/
-dist/
-.DS_Store
 .env
+.DS_Store
+*.log
+
+# Ignora arquivos do Electron ou temporários
+/dist/
