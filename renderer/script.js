@@ -26,10 +26,10 @@ toggleModeBtn.addEventListener("click", () => {
   // Adiciona classe de transição (caso ainda não exista)
   container.classList.add("fade");
 
-  // Aplica fade-out (opacidade indo para 0)
+  // Aplica fade-out (efeitos visuais de saída)
   container.classList.add("fade-out");
 
-  // Aguarda a transição terminar (0.5s), então troca o visual e reinicia o timer
+  // Aguarda a transição terminar antes de aplicar o novo modo
   setTimeout(() => {
     // Aplica o visual do modo correspondente
     if (isChillMode) {
@@ -38,19 +38,12 @@ toggleModeBtn.addEventListener("click", () => {
       setFocusMode();    // Interface focada para produtividade
     }
 
-    // Reinicia o timer com o novo contexto
-    stopTimer();               
-    startTimer(isChillMode);   
+    // Apenas reinicia e zera o timer, não inicia automaticamente
+    stopTimer();
 
-    // Aplica fade-in (opacidade voltando para 1)
+    // Remove imediatamente o efeito de desfoque
     container.classList.remove("fade-out");
-    container.classList.add("fade-in");
-
-    // Remove a classe de fade-in após a transição para evitar acúmulo
-    setTimeout(() => {
-      container.classList.remove("fade-in");
-    }, 450);
-  }, 450);
+  }, 450); // mesmo tempo da transição no CSS
 });
 
 // Liga os botões da interface principal às ações do cronômetro

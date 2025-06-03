@@ -13,14 +13,34 @@ let notifiedShortPause = false;
 let notifiedLongPause = false;
 
 /**
- * Atualiza o conteúdo visual do cronômetro no formato HH:MM:SS
+ * Preenche números com zero à esquerda (ex: 5 → "05")
+ */
+function pad(num) {
+  return num.toString().padStart(2, '0');
+}
+
+/**
+ * Formata o tempo de exibição com base na duração:
+ * - Se < 1 hora: MM:SS
+ * - Se ≥ 1 hora: HH:MM:SS
+ */
+function formatTime(totalSeconds) {
+  const hrs = Math.floor(totalSeconds / 3600);
+  const min = Math.floor((totalSeconds % 3600) / 60);
+  const sec = totalSeconds % 60;
+
+  if (totalSeconds >= 3600) {
+    return `${pad(hrs)}:${pad(min)}:${pad(sec)}`;
+  } else {
+    return `${pad(min)}:${pad(sec)}`;
+  }
+}
+
+/**
+ * Atualiza o conteúdo visual do cronômetro
  */
 function updateDisplay(elapsed) {
-  const hrs = Math.floor(elapsed / 3600);
-  const min = Math.floor((elapsed % 3600) / 60);
-  const sec = elapsed % 60;
-  const formatted = [hrs, min, sec].map(n => String(n).padStart(2, '0')).join(':');
-  timerDisplay.textContent = formatted;
+  timerDisplay.textContent = formatTime(elapsed);
 }
 
 /**
@@ -138,3 +158,4 @@ export function stopTimer() {
 
   updateDisplay(0);
 }
+
