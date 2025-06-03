@@ -6,8 +6,8 @@ let mainWindow;
 // Cria a janela principal da aplicação
 function createMainWindow() {
   mainWindow = new BrowserWindow({
-    width: 230,
-    height: 239,
+    width: 234,
+    height: 240,
     frame: false,
     transparent: true,
     resizable: false,

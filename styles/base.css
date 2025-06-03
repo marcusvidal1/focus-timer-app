@@ -14,8 +14,12 @@ body {
 }
 
 .window {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 230px;
-  height: 235px;
+  height: 230px;
   border: 2px solid #5e503f;
   border-radius: 0 0 12px 12px;
   background-color: #fffef8;
@@ -53,6 +57,6 @@ body {
 .timer {
   font-size: 24px;
   font-weight: bold;
-  margin-top: 12px;
+  margin-top: 5px;
   color: #5e503f;
 }

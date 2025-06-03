@@ -83,12 +83,14 @@
   color: #5e503f;
   cursor: pointer;
   transition: background 0.2s;
+  
 }
 
 .mode-btn .icon {
   width: 14px;
   height: 14px;
   vertical-align: middle;
+
 }
 
 .mode-btn:hover {
