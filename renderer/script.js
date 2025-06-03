@@ -14,22 +14,43 @@ import { bindWindowControls } from '../window/windowControls.js';
 // Estado atual: estamos no modo foco (false) ou no modo descanso/chill (true)?
 let isChillMode = false;
 
+// Elemento principal que recebe o fundo (no seu caso, o <body>)
+const container = document.body;
+
 // Quando o usuário clica para alternar entre os modos (foco ↔ descanso)
 const toggleModeBtn = document.getElementById("toggleModeBtn");
 toggleModeBtn.addEventListener("click", () => {
   // Inverte o modo atual
   isChillMode = !isChillMode;
 
-  // Aplica o visual e a lógica do modo correspondente
-  if (isChillMode) {
-    setChillMode();    // Interface mais relaxante
-  } else {
-    setFocusMode();    // Interface focada para produtividade
-  }
+  // Adiciona classe de transição (caso ainda não exista)
+  container.classList.add("fade");
 
-  // Ao trocar de modo, o timer é reiniciado do zero com o novo contexto
-  stopTimer();               // Garante que o timer anterior pare
-  startTimer(isChillMode);   // Começa um novo timer com o modo atual
+  // Aplica fade-out (opacidade indo para 0)
+  container.classList.add("fade-out");
+
+  // Aguarda a transição terminar (0.5s), então troca o visual e reinicia o timer
+  setTimeout(() => {
+    // Aplica o visual do modo correspondente
+    if (isChillMode) {
+      setChillMode();    // Interface mais relaxante
+    } else {
+      setFocusMode();    // Interface focada para produtividade
+    }
+
+    // Reinicia o timer com o novo contexto
+    stopTimer();               
+    startTimer(isChillMode);   
+
+    // Aplica fade-in (opacidade voltando para 1)
+    container.classList.remove("fade-out");
+    container.classList.add("fade-in");
+
+    // Remove a classe de fade-in após a transição para evitar acúmulo
+    setTimeout(() => {
+      container.classList.remove("fade-in");
+    }, 450);
+  }, 450);
 });
 
 // Liga os botões da interface principal às ações do cronômetro

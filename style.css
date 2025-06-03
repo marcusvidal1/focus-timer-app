@@ -156,3 +156,19 @@ html, body {
 .mode-btn:hover {
   background-color: #ffeaa7;
 }
+
+body.fade {
+  transition:
+    filter 0.9s ease,
+    transform 0.9s ease;
+}
+
+body.fade-out {
+  filter: blur(0.8px) brightness(0.9);
+  transform: scale(1.01);
+}
+
+body.fade-in {
+  filter: blur(0px) brightness(1);
+  transform: scale(1);
+}
