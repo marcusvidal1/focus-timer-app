@@ -1,0 +1,12 @@
+body.fade {
+  transition:
+    filter 0.45s ease-in-out,
+    transform 0.45s ease-in-out;
+}
+
+body.fade-out {
+  filter: blur(2.5px) brightness(0.9);
+  transform: scale(1.01);
+}
+
+

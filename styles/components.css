@@ -1,45 +1,3 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  font-family: 'Courier New', monospace;
-  color: #5e503f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.window {
-  width: 230px; 
-  height: 235px; 
-  border: 2px solid #5e503f;
-  border-radius: 0 0 12px 12px;
-  background-color: #fffef8;
-  overflow: hidden;
-  box-shadow: 3px 3px 0 #5e503f;
-  display: flex;
-  flex-direction: column;
-}
-
-.header {
-  background: #f2c94c;
-  padding: 4px;
-  font-weight: bold;
-  font-size: 12px;
-  color: #5e503f;
-  text-align: center;
-  border-bottom: 2px solid #d8b44c;
-  -webkit-app-region: drag;
-  position: relative;
-  height: 26px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .window-controls {
   position: absolute;
   right: 6px;
@@ -59,19 +17,6 @@ html, body {
   padding: 1px 4px;
   border-radius: 4px;
   transition: background 0.2s;
-}
-
-.window-controls button:hover {
-  background-color: #f2c94c;
-}
-
-.content {
-  padding: 2px 4px 4px 4px;
-  text-align: center;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .message {
@@ -124,13 +69,6 @@ html, body {
   filter: drop-shadow(0 0 6px #0ff);
 }
 
-.timer {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 12px;
-  color: #5e503f;
-}
-
 .mode-btn {
   display: flex;
   align-items: center;
@@ -154,16 +92,16 @@ html, body {
 }
 
 .mode-btn:hover {
-  background-color: #ffeaa7;
+  filter: brightness(1.1);
 }
 
-body.fade {
-  transition:
-    filter 0.45s ease-in-out,
-    transform 0.45s ease-in-out;
+.mode-btn:active {
+  transform: scale(0.97);
+  filter: brightness(0.95);
 }
 
-body.fade-out {
-  filter: blur(2.5px) brightness(0.9);
-  transform: scale(1.01);
+.mode-btn.active-mode:hover {
+  filter: brightness(1.1);
 }
+
+
